@@ -32,6 +32,7 @@ DELHI_STATIONS = {
     5630: "Shadipur",
     5634: "Lodhi Road",
     5650: "IGI Airport (T3)",
+    8118: "US Embassy",  # Chanakyapuri, AirNow; PM2.5 only
 }
 
 CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "openaq_cache")
