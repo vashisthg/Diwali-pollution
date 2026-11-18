@@ -72,8 +72,9 @@ def get_hourly(start, end, stations=DELHI_STATIONS, parameters=("pm25", "pm10", 
     df = pd.DataFrame(rows, columns=["station", "datetime", "parameter", "value"])
     # timestamps are local (+05:30); drop the offset so plots read in IST
     df["datetime"] = pd.to_datetime(df["datetime"].str[:19])
-    # drop sensor glitches: zero/negative (a 0 µg/m³ reading in Delhi is a dead sensor) or absurd values
-    df = df[(df["value"] > 0) & (df["value"] < 2000)]
+    # drop sensor glitches: below 1 µg/m³ (in Delhi that is a dead sensor, e.g. Sirifort on Diwali night)
+    # or absurd values
+    df = df[(df["value"] >= 1) & (df["value"] < 2000)]
     return df
 
 
